@@ -4,10 +4,6 @@ import mongoose from 'mongoose';
 const app = express();
 const port = process.env.PORT || 3001;
 
-// 404 - API NOT FOUND
-app.use('/', (req, res) => {
-  res.status(404).send('API UserAuth - Endpoint not found!');
-});
 
 //DB CREDENTIALS
 const dbUser = process.env.DBUSER;
@@ -24,3 +20,7 @@ mongoose.connect(MONGO_NAME_STR)
   .catch((err) => console.log(err));
 
 
+// 404 - API NOT FOUND
+app.use('/', (req, res) => {
+  res.status(404).send('API UserAuth - Endpoint not found!');
+});
