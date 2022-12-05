@@ -12,6 +12,7 @@ const ordersService = 3002;
 
 // Test Request Uri
 function redirectToService(req: Request) {
+  console.log('New request at ' + req.path);
   if (req.path.startsWith('/userauth')) return `http://localhost:${userAuthService}/`;
   else if (req.path.startsWith('/orders')) return `http://localhost:${ordersService}/`;
   return 'http://localhost:3000/';
