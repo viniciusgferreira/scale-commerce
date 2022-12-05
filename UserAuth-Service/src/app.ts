@@ -19,8 +19,8 @@ const MONGO_NAME_STR = "mongodb://mongo:27017";
 mongoose.connect(MONGO_NAME_STR)
   .then(() => {
     console.log('Conectado ao MongoDB');
+    app.listen(port, () => console.log(`API UserAuth Service is running on port http://localhost:${port}`));
   })
   .catch((err) => console.log(err));
 
-app.listen(port, () => console.log(`API UserAuth Service is running on port http://localhost:${port}`));
 
