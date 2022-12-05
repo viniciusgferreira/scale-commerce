@@ -14,7 +14,7 @@ const dbUser = process.env.DBUSER;
 const dbPass = process.env.DBPASS;
 
 // MONGODB CONNECTION
-const MONGO_NAME_STR = "mongodb://mongo:27017";
+const MONGO_NAME_STR = "mongodb://localhost:27017";
 
 mongoose.connect(MONGO_NAME_STR)
   .then(() => {

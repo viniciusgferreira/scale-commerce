@@ -1,6 +1,7 @@
 version: '3'
 services:
   node:
+    container_name: user-auth
     restart: always
     build: .
     ports:
@@ -9,6 +10,7 @@ services:
       - ./:/code
   mongo:
     image: mongo
+    container_name: mongodb
     ports:
       - 27017:27017
     volumes:
