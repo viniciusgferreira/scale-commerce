@@ -1,13 +1,19 @@
 import { Router } from "express";
 
 export const router = Router();
-
-// ADD USER
-router.post('/userauth/users', (req, res) => {
-  res.send('OK');
-});
+const servicePath = '/userauth';
 
 // GET USER INFO
-router.get('/userauth/users', (req, res) => {
-  res.send('OK');
+router.get(servicePath + '/users', (req, res) => {
+  res.send('OK users GET');
+});
+
+// ADD USER
+router.post(servicePath + '/users', (req, res) => {
+  res.send('OK users POST');
+});
+
+// EDIT USER INFO
+router.put(servicePath + '/users', (req, res) => {
+  res.send('OK users put');
 });
