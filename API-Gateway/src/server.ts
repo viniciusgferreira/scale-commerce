@@ -7,14 +7,14 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // SERVICES PORTS
-const userAuthService = 3001;
-const ordersService = 3002;
+const userAuthServicePort = 3001;
+const ordersServicePort = 3002;
 
 // Test Request Uri
 function redirectToService(req: Request) {
   console.log('New request at ' + req.path);
-  if (req.path.startsWith('/userauth')) return `http://localhost:${userAuthService}/`;
-  else if (req.path.startsWith('/orders')) return `http://localhost:${ordersService}/`;
+  if (req.path.startsWith('/userauth')) return `http://localhost:${userAuthServicePort}/api/${req.path}`;
+  else if (req.path.startsWith('/orders')) return `http://localhost:${ordersServicePort}/api/${req.path}`;
   return 'http://localhost:3000/';
 }
 
