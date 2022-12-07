@@ -28,7 +28,7 @@ function redirectToService(req: Request) {
 //REDIRECTION
 app.use('/api', (req, res, next) => {
   httpProxy(redirectToService(req))(req, res, next);
-  httpProxy(`http://localhost:${userAuthServicePort}/api/${req.path}`)(req, res, next);
+  //httpProxy(`http://localhost:${userAuthServicePort}/api/${req.path}`)(req, res, next);
 });
 
 // 404 - API NOT FOUND
