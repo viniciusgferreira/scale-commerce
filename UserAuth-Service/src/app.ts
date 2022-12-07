@@ -16,6 +16,8 @@ mongoose.connect(MONGO_NAME_STR)
     const app = express();
     const port = process.env.PORT || 3001;
 
+    // JSON
+    app.use(express.json());
     // ROUTER
     app.use(router);
 
