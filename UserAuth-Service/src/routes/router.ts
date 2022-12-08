@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { listUsers, listUserById, addUser, editUser } from "../controllers/user-controller";
+import { listUsers, listUserById, addUser, editUser, removeUser } from "../controllers/user-controller";
 
 export const router = Router();
 const servicePath = '/userauth';
@@ -15,3 +15,6 @@ router.post(servicePath + '/users', addUser);
 
 // EDIT USER INFO
 router.put(servicePath + '/users', editUser);
+
+// DELETE USER
+router.delete(servicePath + '/users/:id', removeUser);
