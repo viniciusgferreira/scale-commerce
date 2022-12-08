@@ -2,19 +2,18 @@ import { Router } from "express";
 import { listUsers, listUserById, addUser, editUser, removeUser } from "../controllers/user-controller";
 
 export const router = Router();
-const servicePath = '/userauth';
 
 // GET USER INFO by ID
-router.get(servicePath + '/users/:id', listUserById);
+router.get('/users/:id', listUserById);
 
 // GET USERS
-router.get(servicePath + '/users', listUsers);
+router.get('/users', listUsers);
 
 // ADD USER
-router.post(servicePath + '/users', addUser);
+router.post('/users', addUser);
 
 // EDIT USER INFO
-router.put(servicePath + '/users', editUser);
+router.put('/users', editUser);
 
 // DELETE USER
-router.delete(servicePath + '/users/:id', removeUser);
+router.delete('/users/:id', removeUser);

@@ -16,14 +16,14 @@ export async function listUsers(req: Request, res: Response) {
 export async function listUserById(req: Request, res: Response) {
   const { id } = req.params;
   const user = await getUserById(id);
-  user === null ? res.status(400).send('user not found') : res.json(user)
+  !user ? res.status(400).send('user not found') : res.json(user)
 }
 
 // ADD USER - POST
 export async function addUser(req: Request, res: Response) {
   const { username, password } = req.body;
   const newUser = await setUser({ username, password });
-  res.json(newUser);
+  !newUser ? res.status(500).send('user not created') : res.json(newUser);
 }
 
 // EDIT USER - PUT
@@ -37,5 +37,5 @@ export async function editUser(req: Request, res: Response) {
 export async function removeUser(req: Request, res: Response) {
   const { id } = req.params;
   const result = await deleteUser(id);
-  result === null ? res.status(400).send('user not found') : res.status(204).end();
+  !result ? res.status(400).send('user not found') : res.status(204).end();
 }
