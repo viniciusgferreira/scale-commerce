@@ -14,10 +14,10 @@ const ordersServicePort = 3002;
 // Test Request Uri
 function redirectToService(req: Request) {
   console.log('New request at ' + req.path);
-  if (req.path.startsWith('/userauth')) {
+  if (req.path.startsWith('/user-service')) {
     return `http://localhost:${userAuthServicePort}/api${req.path}`;
   }
-  else if (req.path.startsWith('/orders')) {
+  else if (req.path.startsWith('/order-service')) {
     return `http://localhost:${ordersServicePort}/api/${req.path}`;
   }
   return 'http://localhost:3000/';
@@ -28,12 +28,6 @@ function redirectToService(req: Request) {
 //REDIRECTION
 app.use('/api', (req, res, next) => {
   httpProxy(redirectToService(req))(req, res, next);
-  //httpProxy(`http://localhost:${userAuthServicePort}/api/${req.path}`)(req, res, next);
-});
-
-// 404 - API NOT FOUND
-app.use('/', (req, res) => {
-  res.status(404).send('API Gateway Endpoint not found');
 });
 
 app.listen(port, () => {
