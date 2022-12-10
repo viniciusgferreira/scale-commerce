@@ -21,8 +21,8 @@ export async function listUserById(req: Request, res: Response) {
 
 // ADD USER - POST
 export async function addUser(req: Request, res: Response) {
-  const { username, password } = req.body;
-  const newUser = await setUser({ username, password });
+  const { username, password, role } = req.body;
+  const newUser = await setUser({ username, password, role });
   !newUser ? res.status(500).send('user not created') : res.json(newUser);
 }
 
