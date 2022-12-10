@@ -1,7 +1,7 @@
 version: '3'
 services:
   node:
-    container_name: user-auth
+    container_name: user
     restart: always
     build: .
     ports:
