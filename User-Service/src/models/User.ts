@@ -5,7 +5,14 @@ const userSchema = new Schema({
   username: {
     type: String, lowercase: true, unique: true, required: [true, 'cannot be blank'], match: [/^[a-zA-Z0-9]+$/, 'is invalid'], index: true
   },
-  password: String,
+  password: {
+    type: String, required: [true, 'please provide a password']
+  },
+  role: {
+    type: String,
+    enum: ['user', 'admin'],
+    default: 'user'
+  }
 }, { timestamps: true });
 
 // VALIDATE UNIQUE USERNAME
