@@ -28,9 +28,9 @@ export async function addUser(req: Request, res: Response) {
 
 // EDIT USER - PUT
 export async function editUser(req: Request, res: Response) {
-  const { username, password, id } = req.body;
-  await updateUser(id, { username, password });
-  res.status(204).end();
+  const { username, password, id, role } = req.body;
+  const editedUser = await updateUser(id, { username, password, role });
+  !editedUser ? res.status(500).send('user not edited') : res.json(editedUser);
 }
 
 // DELETE USER - DELETE
