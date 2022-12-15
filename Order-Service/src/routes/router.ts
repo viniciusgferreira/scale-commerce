@@ -1,23 +1,21 @@
 import { Router } from "express";
-//import { listUsers, listUserById, addUser, editUser, removeUser } from "../controllers/user-controller";
+import { addOrder, listOrderById, listOrders } from "../controllers/order-controller";
 
 export const router = Router();
 
-router.get('/orders', (req, res) => {
-    res.send('Order service ok');
-});
+router.get('/orders', listOrders);
 
-/* // GET USER INFO by ID
-router.get('/users/:id', listUserById);
+// GET USER INFO by ID
+router.get('/orders/:id', listOrderById);
 
 // GET USERS
-router.get('/users', listUsers);
+//router.get('/users', listUsers);
 
 // ADD USER
-router.post('/users', addUser);
+router.post('/orders', addOrder);
 
 // EDIT USER INFO
-router.put('/users', editUser);
+//router.put('/users', editUser);
 
 // DELETE USER
-router.delete('/users/:id', removeUser); */
+//router.delete('/users/:id', removeUser); * /
