@@ -5,6 +5,7 @@ import { getUserById } from "../services/getUserById";
 import { getUsers } from "../services/getUsers";
 import { setUser } from "../services/setUser";
 import { updateUser } from "../services/updateUser";
+import { addOrderToUser } from "../services/addOrderToUser";
 
 // LIST ALL USERS - GET
 export async function listUsers(req: Request, res: Response) {
@@ -28,8 +29,8 @@ export async function addUser(req: Request, res: Response) {
 
 // EDIT USER - PUT
 export async function editUser(req: Request, res: Response) {
-  const { username, password, id, role } = req.body;
-  const editedUser = await updateUser(id, { username, password, role });
+  const { username, password, id, role, orders } = req.body;
+  const editedUser = await updateUser({ id, username, password, role, orders });
   !editedUser ? res.status(500).send('user not edited') : res.json(editedUser);
 }
 
@@ -38,4 +39,14 @@ export async function removeUser(req: Request, res: Response) {
   const { id } = req.params;
   const result = await deleteUser(id);
   !result ? res.status(400).send('user not found') : res.status(204).end();
+}
+
+// ADD ORDERS TO USER
+export async function addOrder(userID: string, orderID: string) {
+  const user = await getUserById(userID);
+  if (user) {
+    user?.orders.push(orderID);
+    const editedUser = await addOrderToUser(userID, user);
+    !editedUser ? console.log('order failed to add to user') : console.log('order sucessfully to add to user');
+  }
 }
