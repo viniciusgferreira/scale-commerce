@@ -13,9 +13,9 @@ const userSchema = new Schema({
     enum: ['user', 'admin'],
     default: 'user'
   },
-  orders: {
-    type: Array<String>
-  }
+  orders: [{
+    type: String
+  }]
 }, { timestamps: true });
 
 // VALIDATE UNIQUE USERNAME
