@@ -62,3 +62,44 @@ Edit User info from specific id inside Json body request
 ```
 ### DELETE /user-service/users/:id
 Delete User by ID.
+
+## Order service
+
+### Structure of Order object
+
+The Order object in `` folder has the following fields:
+
+```js
+{
+		"_id": String,
+		"user": String,
+		"totalPrice": Number,
+		"products": Array
+	}
+```
+
+### GET /order-service/orders
+List all orders and their info
+### GET /order-service/orders/:id
+List order info by ID.
+### POST /order-service/orders
+Add order from Json body request.
+```js
+{
+	"user": "vini",
+	"totalPrice": 2000,
+	"products": ["TV", "Notebook"]
+}
+```
+### PUT /order-service/orders
+Edit order info from specific id inside Json body request
+```js
+{
+	"id": "6390cac708a259a1a8158a1e",
+	"user": "vinicius",
+	"totalPrice": 2200,
+	"products": ["Iphone", "Notebook"]
+}
+```
+### DELETE /order-service/orders/:id
+Delete order by ID.
