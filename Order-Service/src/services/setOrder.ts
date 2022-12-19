@@ -7,6 +7,7 @@ export const setOrder = async (order: { user: string; totalPrice: Number; produc
     const newOrder = await Order.create(order);
 
     // ADD EVENT TO RABBITMQ ORDERS QUEUE
+    console.log('new order created');
     produce(JSON.stringify(newOrder));
 
     return newOrder;

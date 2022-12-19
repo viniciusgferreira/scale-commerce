@@ -1,7 +1,7 @@
 import amqp from 'amqplib'
 
 export async function produce(payload: String) {
-  console.log('Publishing');
+  console.log('Publishing new Event to RabbitMQ');
   const connection = await amqp.connect('amqp://localhost:5672');
   const channel = await connection.createChannel();
   const exchange = 'orders';
