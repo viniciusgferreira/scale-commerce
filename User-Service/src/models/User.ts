@@ -12,6 +12,9 @@ const userSchema = new Schema({
     type: String,
     enum: ['user', 'admin'],
     default: 'user'
+  },
+  orders: {
+    type: Array<String>
   }
 }, { timestamps: true });
 
