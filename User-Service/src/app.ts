@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import { router } from './routes/router';
+import { consumeMessages } from './utils/user-consumer';
 
 //DB CREDENTIALS
 const dbUser = process.env.DBUSER;
@@ -24,5 +25,8 @@ mongoose.connect(MONGO_NAME_STR)
     app.use('/user-service', router);
 
     app.listen(port, () => console.log(`API UserAuth Service is running on port http://localhost:${port}`));
+
+    // START RABBITMQ CONSUMER
+    consumeMessages();
   })
   .catch((err) => console.log(err));
