@@ -34,7 +34,8 @@ The User object in `` folder has the following fields:
 		"_id": String,
 		"username": String,
 		"password": String,
-		"role": String
+		"role": String,
+		"orders": Array
 	}
 ```
 
