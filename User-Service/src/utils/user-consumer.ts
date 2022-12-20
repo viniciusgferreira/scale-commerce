@@ -1,15 +1,16 @@
 import amqp, { Message } from 'amqplib';
 import { addOrder } from '../controllers/user-controller';
 
+const amqpURL = 'amqp://localhost:5672'
+
 export async function consumeMessages() {
   console.log('Consuming');
-  const connection = await amqp.connect('amqp://localhost:5672');
+  const connection = await amqp.connect(amqpURL);
   const channel = await connection.createChannel();
   const queue = 'newOrders';
 
   await channel.assertQueue(queue, { durable: true });
   await channel.consume(queue, (msg) => {
-    console.log(msg?.content.toString());
 
     // ADD ORDER ID TO USER DATABASE
     if (msg) {
@@ -25,6 +26,7 @@ export async function consumeMessages() {
   setTimeout(() => {
     channel.close();
     connection.close();
+    console.log('Connection amqp closed');
   }, 500);
 
 }
