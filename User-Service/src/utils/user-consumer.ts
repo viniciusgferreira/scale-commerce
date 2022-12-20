@@ -3,11 +3,12 @@ import { addOrder } from '../controllers/user-controller';
 
 const amqpURL = 'amqp://localhost:5672'
 
+// CONSUME MESSAGES FROM ORDERS QUEUE
 export async function consumeMessages() {
-  console.log('Consuming');
   const connection = await amqp.connect(amqpURL);
   const channel = await connection.createChannel();
   const queue = 'newOrders';
+  console.log('Consuming messages from RabbitMQ: Orders queue');
 
   await channel.assertQueue(queue, { durable: true });
   await channel.consume(queue, (msg) => {
@@ -17,16 +18,9 @@ export async function consumeMessages() {
       const orderJson = JSON.parse(msg.content.toString());
       addOrder(orderJson.user, orderJson._id);
 
-      channel.ackAll();
-      channel.cancel('myconsumer');
-      console.log('Consumed.');
+      channel.ack(msg);
+      //channel.cancel('User-consumer');
+      console.log('Message consumed.');
     }
-  }, { consumerTag: 'myconsumer' });
-
-  setTimeout(() => {
-    channel.close();
-    connection.close();
-    console.log('Connection amqp closed');
-  }, 500);
-
+  }, { consumerTag: 'User-consumer' });
 }
