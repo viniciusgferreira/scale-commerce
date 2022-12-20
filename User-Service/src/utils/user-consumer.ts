@@ -19,7 +19,6 @@ export async function consumeMessages() {
       addOrder(orderJson.user, orderJson._id);
 
       channel.ack(msg);
-      //channel.cancel('User-consumer');
       console.log('Message consumed.');
     }
   }, { consumerTag: 'User-consumer' });
