@@ -47,6 +47,6 @@ export async function addOrder(userID: string, orderID: string) {
   if (user) {
     user?.orders.push(orderID);
     const editedUser = await addOrderToUser(userID, user);
-    !editedUser ? console.log('order failed to add to user') : console.log(`order: ${orderID} sucessfully to add to user: ${userID}`);
+    !editedUser ? console.log('order failed to add to user') : console.log(`order: ${orderID} sucessfully added to user: ${userID}`);
   }
 }
