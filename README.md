@@ -5,6 +5,9 @@ The main goal is to build all the Backend, service by service and connect them w
 
 The communication between client and server use RESTful API endpoint, which is handled by an API Gateway that distribute all the requests to each service.
 
+## Services status
+Currently only User and Order services were built, this it a project to improve and showcase my skills.
+
 ## About the idea
 
 This backend web application can scale horizontally using Docker Containers, accordingly to each service needs. Each service is independent from other services, with it's own Database.
