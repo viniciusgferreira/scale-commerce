@@ -6,6 +6,8 @@ services:
     build: .
     ports:
       - 3001:3001
+    networks:
+      - scale-commerce-network
     volumes:
       - ./:/code
   mongo:
@@ -14,7 +16,15 @@ services:
     restart: always
     ports:
       - 27017:27017
+    networks:
+      - scale-commerce-network
     volumes:
       - mongodb:/data/db
 volumes:
   mongodb:
+
+
+networks:
+  scale-commerce-network:
+    external:
+      name: scale-commerce-network
