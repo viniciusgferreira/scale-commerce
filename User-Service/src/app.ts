@@ -8,7 +8,9 @@ const dbUser = process.env.DBUSER;
 const dbPass = process.env.DBPASS;
 
 // MONGODB CONNECTION
-const MONGO_NAME_STR = "mongodb://localhost:27017";
+const mongo = process.argv[2] || 'mongodb'
+console.log(mongo);
+const MONGO_NAME_STR = `mongodb://${mongo}:27017`;
 
 mongoose.connect(MONGO_NAME_STR)
   .then(() => {
@@ -24,7 +26,7 @@ mongoose.connect(MONGO_NAME_STR)
     // ROUTER
     app.use('/user-service', router);
 
-    app.listen(port, () => console.log(`API UserAuth Service is running on port http://localhost:${port}`));
+    app.listen(port, () => console.log(`API User Service is running on port http://localhost:${port}`));
 
     // START RABBITMQ CONSUMER
     consumeMessages();
